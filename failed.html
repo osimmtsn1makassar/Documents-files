@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsip Rapat - OSIM MTsN 1 Makassar</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .islamic-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+
+        .chevron-icon {
+            transition: transform 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Scroll halus dan bar yang rapi */
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            /* abu-abu lembut */
+            border-radius: 4px;
+        }
+
+        .overflow-x-auto:hover::-webkit-scrollbar-thumb {
+            background-color: #94a3b8;
+            /* sedikit lebih gelap pas di-hover */
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-green-50 to-blue-50 min-h-screen islamic-pattern">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="Logo OSIM.png" alt="Logo OSIM" class="h-12 w-12 object-contain">
+                <div>
+                    <h1 class="text-xl font-bold text-green-600">OSIM MTsN 1 Makassar</h1>
+                    <p class="text-xs text-gray-600">Arsip Rapat</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="arsip.html" class="flex items-center gap-2 text-green-600 hover:text-green-700 transition">
+                    <i data-lucide="archive" class="w-5 h-5"></i>
+                    <span class="hidden sm:inline">Arsip</span>
+                </a>
+                <a href="index.html" class="flex items-center gap-2 text-green-600 hover:text-green-700 transition">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    <span class="hidden sm:inline">Beranda</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Page Title -->
+        <div class="text-center mb-12 fade-in">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                Arsip Rapat
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Dokumentasi lengkap rapat-rapat OSIM dengan detail peserta dan hasil keputusan
+            </p>
+        </div>
+
+        <!-- Meeting Archive Section -->
+        <div class="max-w-4xl mx-auto space-y-4">
+
+            <!-- Meeting 1 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden fade-in" style="animation-delay: 0.2s">
+                <button onclick="toggleAccordion(2)"
+                    class="w-full px-6 py-5 flex items-center justify-between hover:bg-green-50 transition"
+                    data-testid="meeting-2-toggle">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-blue-100 p-3 rounded-lg">
+                            <i data-lucide="calendar" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-semibold text-gray-800">Rapat Rutin Organisasi Siswa Intra Madrasah
+                            </h3>
+                            <p class="text-sm text-gray-500">26 September 2025</p>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-gray-400 chevron-icon" id="chevron-2"></i>
+                </button>
+                <div class="accordion-content px-6 pb-6" id="content-2" data-testid="meeting-2-content">
+                    <div class="border-t pt-4 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="users" class="w-5 h-5 text-blue-600"></i>
+                            <span class="text-gray-700"><strong>Jumlah Peserta:</strong> 120 orang</span>
+                        </div>
+                        <div>
+                            <strong class="text-gray-700 text-lg">Hasil Rapat:</strong>
+                            <ul class="mt-2 space-y-2 text-gray-600 list-decimal list-inside">
+                                <li>Tugas klipping atau catatan materi selama LDK dikumpulkan maksimal hari
+                                    <strong>Selasa, 26 September 2025</strong>.
+                                    Bisa dibuat di Microsoft Word (print) atau manual, dengan identitas (nama & kelas)
+                                    agar tidak tercecer, lalu disetorkan ke Ruangan OSIM.
+                                </li>
+                                <li>Setiap anggota wajib membayar uang kas sebesar <strong>Rp5.000</strong> setiap
+                                    rapat.
+                                    Uang kas boleh dibayar sekaligus.
+                                </li>
+                                <li>Anggota memiliki maksimal <strong>15 poin negatif</strong>. Jika melebihi batas,
+                                    akan dikenakan konsekuensi.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-4">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-blue-600"></i>
+                        <span class="text-gray-600">Masjid Lantai 2 MTsN 1 Kota Makassar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Meeting 2 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden fade-in" style="animation-delay: 0.1s">
+            <button onclick="toggleAccordion(2)"
+                class="w-full px-6 py-5 flex items-center justify-between hover:bg-green-50 transition"
+                data-testid="meeting-1-toggle">
+                <div class="flex items-center gap-4">
+                    <div class="bg-green-100 p-3 rounded-lg">
+                        <i data-lucide="calendar" class="w-6 h-6 text-green-600"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-lg font-semibold text-gray-800">Rapat Penetapan Peraturan Sekretariat</h3>
+                        <p class="text-sm text-gray-500">30 September 2025</p>
+                    </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-6 h-6 text-gray-400 chevron-icon" id="chevron-1"></i>
+            </button>
+            <div class="accordion-content px-6 pb-6 overflow-y-auto" id="content-2" data-testid="meeting-2-content">
+                <div class="border-t pt-4 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="users" class="w-5 h-5 text-green-600"></i>
+                        <span class="text-gray-700"><strong>Jumlah Peserta:</strong> 20 orang</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="file-text" class="w-5 h-5 text-green-600 mt-1"></i>
+                        <div>
+                            <strong class="text-gray-700 text-lg">Hasil Rapat:</strong>
+                            <ul class="mt-2 space-y-2 text-gray-600">
+                                <li>• Penetapan Peraturan Sekretariat OSIM/MPK</li>
+                            </ul>
+
+                            <div class="overflow-x-auto mt-4 max-w-full">
+                                <table class=" border border-gray-300 text-gray-700">
+                                    <thead class="bg-gray-100 text-gray-800">
+                                        <tr>
+                                            <th class="px-4 py-2 border">Peraturan</th>
+                                            <th class="px-4 py-2 border">Konsekuensi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="px-4 py-2 border">Selain MPK/OSIM dilarang masuk ke dalam
+                                                Sekretariat (kecuali telah memiliki izin dari pengurus 4 MPK, atau
+                                                pengurus 10 OSIM, atau pembina MPK/OSIM).</td>
+                                            <td class="px-4 py-2 border text-center">Rp10.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-2 border">Dilarang berada di Sekretariat selama jam
+                                                pelajaran (kecuali telah memiliki izin dari ketua MPK/OSIM, atau
+                                                pembina MPK/OSIM).</td>
+                                            <td class="px-4 py-2 border text-center">Rp20.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-2 border">Dilarang bersuara keras yang mengganggu
+                                                kenyamanan bersama. Konsekuensi berlaku ketika sudah mendapat 2x
+                                                teguran.</td>
+                                            <td class="px-4 py-2 border text-center">Rp20.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-2 border">Dilarang mengupload video yang tidak
+                                                bermanfaat di dalam Sekretariat.</td>
+                                            <td class="px-4 py-2 border text-center">Rp20.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-2 border">Dilarang makan di dalam Sekretariat.</td>
+                                            <td class="px-4 py-2 border text-center">Rp20.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-2 border">Dilarang berada di Sekretariat ketika jam
+                                                telah menunjukkan pukul 17.00 WITA (toleransi hingga 17.30 WITA).
+                                            </td>
+                                            <td class="px-4 py-2 border text-center">Rp10.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-2 border">Dilarang berada di Sekretariat ketika adzan
+                                                telah berkumandang hingga selesai sholat, dan wajib mengikuti sholat
+                                                berjamaah di masjid.</td>
+                                            <td class="px-4 py-2 border text-center">Rp30.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="flex items-center gap-3 mt-4">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-green-600"></i>
+                        <span class="text-gray-600">Sekretariat MPK/OSIM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Meeting 3 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden fade-in" style="animation-delay: 0.3s">
+            <button onclick="toggleAccordion(3)"
+                class="w-full px-6 py-5 flex items-center justify-between hover:bg-green-50 transition"
+                data-testid="meeting-3-toggle">
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3 rounded-lg">
+                        <i data-lucide="calendar" class="w-6 h-6 text-purple-600"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-lg font-semibold text-gray-800">Rapat Rutin Organisasi Siswa Intra Madrasah</h3>
+                        <p class="text-sm text-gray-500">3 Oktober 2025</p>
+                    </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-6 h-6 text-gray-400 chevron-icon" id="chevron-3"></i>
+            </button>
+            <div class="accordion-content px-6 pb-6" id="content-3" data-testid="meeting-3-content">
+                <div class="border-t pt-4 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="users" class="w-5 h-5 text-purple-600"></i>
+                        <span class="text-gray-700"><strong>Jumlah Peserta:</strong> 100 orang</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="file-text" class="w-5 h-5 text-purple-600 mt-1"></i>
+                <div>
+                    <strong class="text-gray-700 text-lg">Hasil Rapat:</strong>
+                    <ul class="mt-2 space-y-2 text-gray-600 list-decimal list-inside">
+                        <li>Pembagian kelompok — terdiri dari 6 kelompok, dan setiap kelompok berdiskusi sesuai tema masing-masing.</li>
+                        <li>Adapun tema-tema setiap kelompok adalah:
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>Kelompok 1 : Polusi Udara</li>
+                                <li>Kelompok 2 : Pergaulan Bebas</li>
+                                <li>Kelompok 3 : Kecanduan Gadget</li>
+                                <li>Kelompok 4 : Kebakaran Hutan</li>
+                                <li>Kelompok 5 : Toleransi</li>
+                                <li>Kelompok 6 : Dampak Rokok pada Kesehatan</li>
+                            </ul>
+                        </li>
+                        <li>Hasil kerja kelompok harus dikumpulkan minggu depan dan akan dipresentasikan.</li>
+                    </ul>
+                </div>
+            </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-purple-600"></i>
+                        <span class="text-gray-600">Masjid Lantai 2 MTsN 1 Kota Makassar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meeting 4 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden fade-in" style="animation-delay: 0.4s">
+            <button onclick="toggleAccordion(4)"
+                class="w-full px-6 py-5 flex items-center justify-between hover:bg-green-50 transition"
+                data-testid="meeting-4-toggle">
+                <div class="flex items-center gap-4">
+                    <div class="bg-orange-100 p-3 rounded-lg">
+                        <i data-lucide="calendar" class="w-6 h-6 text-orange-600"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-lg font-semibold text-gray-800">Rapat Pleno Pengurus OSIM</h3>
+                        <p class="text-sm text-gray-500">12 Februari 2025</p>
+                    </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-6 h-6 text-gray-400 chevron-icon" id="chevron-4"></i>
+            </button>
+            <div class="accordion-content px-6 pb-6" id="content-4" data-testid="meeting-4-content">
+                <div class="border-t pt-4 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="users" class="w-5 h-5 text-orange-600"></i>
+                        <span class="text-gray-700"><strong>Jumlah Peserta:</strong> 35 orang</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="file-text" class="w-5 h-5 text-orange-600 mt-1"></i>
+                        <div>
+                            <strong class="text-gray-700">Hasil Rapat:</strong>
+                            <ul class="mt-2 space-y-2 text-gray-600">
+                                <li>• Laporan pertanggungjawaban kegiatan semester 1</li>
+                                <li>• Pembahasan persiapan Pemilu OSIM 2025</li>
+                                <li>• Evaluasi kinerja bidang-bidang OSIM</li>
+                                <li>• Penetapan kebijakan organisasi untuk semester 2</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-orange-600"></i>
+                        <span class="text-gray-600">Aula Utama MTsN 1 Makassar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12 py-6 border-t">
+        <div class="container mx-auto px-4 text-center text-gray-600">
+            <p>&copy; 2025 OSIM MTsN 1 Makassar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Accordion toggle function
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const chevron = document.getElementById(`chevron-${id}`);
+
+            // Toggle active class
+            content.classList.toggle('active');
+            chevron.classList.toggle('rotate-180');
+        }
+    </script>
+
+</body>
+
+</html>
