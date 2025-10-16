@@ -14,13 +14,6 @@
     .islamic-pattern {
       background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-    .pdf-frame {
-      width: 100%;
-      height: calc(100vh - 180px); /* adjusts to screen minus header/footer */
-      border: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      border-radius: 0.75rem;
-    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-green-50 to-blue-50 islamic-pattern">
@@ -46,21 +39,18 @@
     </div>
   </header>
 
-  <!-- Embedded PDF -->
-  <main class="container mx-auto px-4 py-8">
+  <!-- Main -->
+  <main class="container mx-auto px-4 py-8" id="mainContent">
+
+    <h2 id="docTitle" class="text-lg font-semibold text-center text-gray-700 mb-4"></h2>
 
     <div style="height: 80vh;">
-  <iframe
-    src="https://drive.google.com/file/d/1aGvPauBXVK14wHqUINadrKy3Kn3aX4e3/preview"
-    width="100%"
-    height="100%"
-  ></iframe>
-</div>
-
+      <iframe id="pdfFrame" width="100%" height="100%" class="rounded-lg shadow" allow="autoplay"></iframe>
+    </div>
 
     <div class="mt-4 text-center">
       <a 
-        href="https://drive.google.com/file/d/1aGvPauBXVK14wHqUINadrKy3Kn3aX4e3/preview" 
+        id="openNewTab"
         target="_blank"
         class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
       >
@@ -77,6 +67,34 @@
     </div>
   </footer>
 
-  <script>lucide.createIcons();</script>
+  <!-- Script -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const title = params.get("title");
+
+    const frame = document.getElementById("pdfFrame");
+    const openBtn = document.getElementById("openNewTab");
+    const titleEl = document.getElementById("docTitle");
+    const main = document.getElementById("mainContent");
+
+    if (id) {
+      const previewURL = `https://drive.google.com/file/d/${id}/preview`;
+      const openURL = `https://drive.google.com/file/d/${id}/view`;
+
+      frame.src = previewURL;
+      openBtn.href = openURL;
+      titleEl.textContent = title ? decodeURIComponent(title) : "Dokumen Arsip";
+    } else {
+      main.innerHTML = `
+        <div class="text-center py-20">
+          <h2 class="text-2xl font-semibold text-gray-700 mb-2">⚠️ Tidak ada dokumen dipilih</h2>
+          <p class="text-gray-500">Tambahkan parameter <code>?id=...</code> pada URL</p>
+        </div>
+      `;
+    }
+
+    lucide.createIcons();
+  </script>
 </body>
 </html>
